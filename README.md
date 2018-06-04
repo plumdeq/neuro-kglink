@@ -7,3 +7,13 @@ training neural embeddings globally for the entire graph, as opposed to the usua
 the quality of the embeddings evaluates the performance of binary classifiers for scalable link prediction with limited data. Our evaluation pipeline is made open
 source to the community, and with this we aim to draw more attention of the community towards an important issue of transparency and reproducibility of the neural
 embeddings evaluations.
+
+# Usage
+
+We prepared a set of scripts for: 
+
+* statistics about the links of the knowledge graph
+* data generation (unsupervised corpus for neural embedding training), train
+  and test splits for binary classifiers
+* neural embedding training with StarSpace (requires `starspace`)
+* evaluation of the neural embeddings on the train and test splits
