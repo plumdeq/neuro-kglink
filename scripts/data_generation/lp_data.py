@@ -38,7 +38,7 @@ path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 sys.path.insert(0, path)
 
 # Cross-library imports
-from kglink import kg, dataset
+from kglink import kg
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
