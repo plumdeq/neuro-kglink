@@ -39,7 +39,6 @@ sys.path.insert(0, path)
 from kglink import utils
 
 
-STARSPACE_BIN = "/home/asan/code/kg-dl/vendor-code/starspace/starspace"
 STARSPACE_OPTS = 'train -trainMode 1 -similarity dot -label "" -maxNegSamples 50'
 HYPER_PARAMS = {
     "epoch": [10],
@@ -52,8 +51,8 @@ EXECUTION_TIMES_LOG = 'execution_times_local.csv'
 class Trainer(object):
     """Collects train and test files for different folds and trains embeddings
     with StarSpace for all those folds"""
-    def __init__(self, input_dir, output_dir, regexp_train, 
-                 param_file=None, starspace_bin=None, starspace_opts=None,
+    def __init__(self, input_dir, output_dir, regexp_train, starspace_bin=None,
+                 param_file=None, starspace_opts=None,
                  external_log=EXTERNAL_LOG,
                  execution_times_log=EXECUTION_TIMES_LOG,
                  dry_run=False):
@@ -62,7 +61,7 @@ class Trainer(object):
         self.regexp_train = regexp_train
         self.param_file = param_file
         self.starspace_opts = starspace_opts or STARSPACE_OPTS
-        self.starspace_bin = starspace_bin or STARSPACE_BIN
+        self.starspace_bin = starspace_bin
         self.external_log = external_log
         self.external_log = os.path.join(output_dir, self.external_log)
         self.execution_times_log = execution_times_log
@@ -216,15 +215,15 @@ class Trainer(object):
 
 @click.command()
 @click.argument("input_dir", type=click.Path(exists=True))
+@click.argument("starspace-bin", type=click.Path(exists=True))
 @click.option("--output-dir", default="./embeddings")
 @click.option("--regexp-train", default="*train*graph*")
 @click.option("--param-file", default=None)
-@click.option("--starspace-bin", default=None, type=click.Path(exists=True))
 @click.option("--starspace-opts", default=None)
 @click.option("--external-log", default=EXTERNAL_LOG)
 @click.option("--execution-times-log", default=EXECUTION_TIMES_LOG)
 @click.option("--dry-run", default=False, is_flag=True)
-def train(input_dir, output_dir, regexp_train, param_file, starspace_bin,
+def train(input_dir, starspace_bin, output_dir, regexp_train, param_file, 
              starspace_opts, external_log, execution_times_log, dry_run):
     trainer = Trainer(input_dir, output_dir, regexp_train,
                         param_file=param_file, starspace_bin=starspace_bin,

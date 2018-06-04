@@ -34,9 +34,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-HOEHNDORF_GRAPH = "/media/Warehouse/bigdata-muw/bio-kg/hoehndorf/original-data/bio-knowledge-graph.n3"
-
-
 def init_graph(path):
     """Read lines from the graph and initialize the KG object"""
     lines = None
@@ -130,7 +127,7 @@ def stats_relations(KG):
 
 
 @click.command()
-@click.option("--graph-path", default=HOEHNDORF_GRAPH, type=click.Path(exists=True))
+@click.argument("graph-path", type=click.Path(exists=True))
 @click.option("--out-file", default='./stats/stats_relations.csv')
 @click.option("--dry-run", default=False, is_flag=True)
 def main(graph_path, out_file, dry_run):

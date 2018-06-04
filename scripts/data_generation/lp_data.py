@@ -43,7 +43,6 @@ from kglink import kg, dataset
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-HOEHNDORF_GRAPH = "/media/Warehouse/bigdata-muw/bio-kg/hoehndorf/hoehndorf-graph-improved/merged-graphs/hierarchy_path/data/hierarchy.nt"
 EXCLUDE_RELS = [
         "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>",
         "<http://www.w3.org/2000/01/rdf-schema#subClassOf>",
@@ -315,7 +314,7 @@ def write_map_files(KG, output_path):
 
 
 @click.command()
-@click.option("--input-path", default=HOEHNDORF_GRAPH, type=click.Path(exists=True))
+@click.argument("input-path", type=click.Path(exists=True))
 @click.option("--output-path", default="./output")
 @click.option("--dry-run", default=False, is_flag=True)
 @click.option("--folds", default=1, type=int)
