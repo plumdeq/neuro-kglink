@@ -54,7 +54,7 @@ the result -- a pandas dataframe -- is written to `--out-file`
 ### Data generation
 
 ```
-python3 ./data_generation/lp_data.py [OPTIONS] INPUT_PATH
+python3 ./scripts/data_generation/lp_data.py [OPTIONS] INPUT_PATH
 ``` 
 
 Will create a file structure as the one shown below inside the `--output-path`,
@@ -99,7 +99,7 @@ unsupervized corpus, train and test splits for as many folds as you specify
 ### Training embeddings
 
 ```
-python3 ./train_embeddings/train_mode{1,2}.py [OPTIONS] INPUT_DIR STARSPACE_BIN
+python3 ./scripts/train_embeddings/train_mode{1,2}.py [OPTIONS] INPUT_DIR STARSPACE_BIN
 ```
 
 Mode 1 corresponds to global embeddings training, and mode 2 will train local
@@ -126,7 +126,7 @@ contain embeddings for the specified hyperparameters in the `--params-file'
 ### Evaluation
 
 ```
-python3 ./train_embeddings/eval-mode{1,2}.py [OPTIONS] EMBEDDINGS_DIR TRAIN_DIR
+python3 ./scripts/train_embeddings/eval-mode{1,2}.py [OPTIONS] EMBEDDINGS_DIR TRAIN_DIR
 ``` 
 
 Same as training embeddings you can either evaluate globally for the whole KG
